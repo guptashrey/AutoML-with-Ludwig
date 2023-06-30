@@ -1,0 +1,40 @@
+input_features:
+    -
+        name: text
+        type: text
+        encoder: 
+            type: distilbert
+            use_pretrained: true
+            trainable: false
+            pretrained_model_name_or_path: distilbert-base-uncased
+            dropout: 0.1
+            max_position_embeddings: 512
+            attention_dropout: 0.1
+            activation: gelu
+            reduce_output: sum
+            initializer_range: 0.02
+            qa_dropout: 0.1
+            seq_classif_dropout: 0.2
+            sinusoidal_pos_embds: false
+            n_layers: 6
+            n_heads: 12
+            dim: 768
+            hidden_dim: 3072
+            pretrained_kwargs: null
+output_features:
+    -
+        name: label
+        type: category
+trainer:
+    learning_rate: 0.001
+    epochs: 1
+    batch_size: auto
+    early_stop: 5
+    optimizer:
+        type: adam
+        betas:
+        - 0.9
+        - 0.999
+        eps: 1.0e-08
+        weight_decay: 0.0
+        amsgrad: false
