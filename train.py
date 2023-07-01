@@ -33,13 +33,13 @@ def main(data_file_path, config_file_path):
 
     data_df = pd.read_json(data_file_path, lines=True)
     train_df, test_df = train_test_split(
-        data_df, test_size=0.2, random_state=0, stratify=data_df[["label"]]
+        data_df, test_size=0.5, random_state=0, stratify=data_df[["label"]]
     )
 
     model = LudwigModel(config=config_file_path, logging_level=logging.INFO)
 
-    train_stats, preprocessed_data, output_directory = model.train(dataset=train_df)
-    test_stats, predictions, output_directory = model.evaluate(
+    train_stats, _, __ = model.train(dataset=train_df)
+    test_stats, _, __ = model.evaluate(
         test_df, collect_predictions=True, collect_overall_stats=True
     )
 

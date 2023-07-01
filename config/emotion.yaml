@@ -27,7 +27,7 @@ output_features:
         type: category
 trainer:
     learning_rate: 0.001
-    epochs: 1
+    epochs: 2
     batch_size: auto
     early_stop: 5
     optimizer:
